@@ -1,0 +1,54 @@
+{{>header}}
+
+<body>
+    <div class="container-fluid text-center justify-content-center container_div">
+        <form method="post" action="/search">
+            <div class="input-group mb-3">
+                <div class="search_div"></div>
+                <img src="/images/logo.png" class="youtube_logo">
+                <h4 class="py-2 ml-1">YouTube</h4>
+                <input type="text" class="form-control search_input" placeholder="Search" name="search" required>
+                <button type="submit" class="input-group-text lighten-3 bi bi-search btn_search"></button>
+                <a href=""><i class="bi bi-mic mic-btn"></i></a>
+                <a href="/logout"><i class="fa fa-sign-out ml-3 cus-btn"></i></a>
+            </div>
+        </form>
+        <hr><br>
+    </div>
+    <br>
+
+    <div class="container">
+        {{#each items}}
+        <div class="row mb-5">
+            <div class="col-4">
+                <a href="/ViewVideo/{{this.snippet.resourceId.videoId}}">
+                    <img src="{{this.snippet.thumbnails.medium.url}}">
+                </a>
+            </div>
+            <div class="col-8">
+                <a href="/ViewVideo/{{this.snippet.resourceId.videoId}}" class="video_title">
+                    <h5>{{this.snippet.title}}</h5>
+                </a>
+                <h6>{{this.snippet.description}}</h6>
+                <a href="/ViewPlayList/{{this.snippet.channelId}}" class="video_title">
+                    <h6><strong> Channel: </strong>{{this.snippet.channelTitle}}</h6>
+                </a>
+
+                <a href="javascript:sendUrl('{{this.snippet.resourceId.videoId}}');"
+                    class="btn a-hov download_btn"><i class="fa fa-download"></i>
+                </a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <script>
+        function sendUrl(id) {
+            console.log('downloadBtn clicked')
+            let url = `http://www.youtube.com/watch?v=${id}`
+            window.location.href = `http://localhost:4700/download?URL=${url}&id=${id}`
+        }
+    </script>
+</body>
+
+</html>

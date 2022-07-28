@@ -1,0 +1,160 @@
+.youtube_logo{
+    width:55px; 
+    height: 47px;
+    margin-left: 20px;
+    padding-top:-10px !important
+}
+
+.input-group>.form-control {
+    flex: 0 1 50%;
+    min-width: 0;
+    margin-left: 20px;
+    margin-bottom: 0;
+}
+
+.btn_search{
+    border-radius:0px !important; 
+    height:38px;
+    padding: 0.375rem 1.75rem; 
+    margin-top: 5px;
+}
+
+.input-group>.form-control {
+    flex: 0 1 50%;
+    min-width: 0;
+    margin-left: 20px;
+    margin-bottom: 0;
+}
+
+.mic-btn {
+    position: relative;
+    top: 5px;
+    font-size: 24px;
+    margin-left: 16px;
+    margin-top: 5px;
+    color: #818181;
+    font-weight: 700;
+}
+
+.mic-btn:hover {
+    color: red;
+}
+
+
+.hover-div {
+    padding: 10px 10px;
+}
+
+.hover-div:hover {
+    background-color: #ebebeb;
+}
+
+.cus-btn {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    font-size: 28px !important;
+    margin-top: 5px;
+    color: #818181;
+}
+
+.cus-btn:hover {
+    color: red;
+}
+
+input[type=text]:focus {
+    box-shadow: none;
+}
+
+.a-hov:hover{
+    border: 2px solid rgb(108 181 255);
+}
+
+.a-hov{
+    border:2px solid rgba(255, 255, 255, 0)
+}
+
+.btn-primary {
+    color: #000;
+    background-color: #007bff5c;
+    border-color: #007bff;
+}
+
+.bell-icon {
+    font-size: 30px;
+    position: absolute;
+    top: 8px;
+    right: 15px;
+}
+
+.bell-icon:hover {
+    color: rgb(0, 162, 255);
+}
+
+.fa {
+    font-size: 20px;
+}
+
+.hover-div-2 {
+    padding: 10px 0px;
+    margin-left: 10px;
+}
+
+.hover-div-2:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.border-download:hover {
+    border: 1px solid blue;
+}
+
+.btn-outline-primary {
+    border: none;
+}
+
+.search_input{
+    margin-left: 108px; 
+    margin-top:5px;
+}
+
+.container_div{
+    margin-top: 17px;
+}
+
+.search_div{
+    width: 50px;
+}
+
+.img_thumbnail{
+    border-radius: 15px;
+}
+
+.video_title{
+    color:black; 
+    text-decoration:none !important;
+}
+
+.channel{
+    text-decoration:none;
+}
+
+.download_btn{
+    align-items: center !important; 
+    justify-content: center !important; 
+    color:rgb(108 181 255);
+}
+
+.next_btn{
+    background-color: rgb(255, 255, 255);
+}
+
+.footer_para{
+    text-decoration: none;
+    font-size: 26px;
+    font-style:italic;
+}
+
+.download_btn_icon{
+    align-items: center !important;
+    justify-content: center !important;
+}

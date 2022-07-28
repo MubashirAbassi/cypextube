@@ -1,0 +1,184 @@
+{{>header}}
+
+<body>
+    <div class="container-fluid py-3 text-center justify-content-center container_div">
+        <form method="post" action="/search">
+            <div class="input-group mb-3 ">
+                <div class="search_div"></div>
+                <img src="/images/logo.png" class="youtube_logo">
+                <h4 class="py-2 ml-1">YouTube</h4>
+                <input type="text" class="form-control search_input" placeholder="Search" name="search" required>
+                <button type="submit" class="input-group-text lighten-3 bi bi-search btn_search"></button>
+                <a href=""><i class="bi bi-mic mic-btn"></i></a>
+                <a href="/logout"><i class="fa fa-sign-out ml-3 cus-btn"></i></a>
+            </div>
+        </form>
+        <hr><br>
+    </div>
+
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-7">
+                <iframe width="660" height="400" src="https://www.youtube.com/embed/{{this.Id}}"
+                    title="YouTube video player" frameborder="0" class="mb-2"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <br>
+                <h5>{{snippet.title}}</h5>
+
+                <div class="row">
+                    <div class="col-2 text-center">
+                        {{#if items.viewCount}}
+                        <p><i class="fa fa-eye text-primary"></i><br>
+                            {{items.viewCount}} </p>
+                        {{/if}}
+                    </div>
+
+                    <div class="col-2 text-center">
+                        {{#if items.likeCount}}
+                        <p><i class="fa fa-thumbs-up text-success"></i><br>
+                            {{items.likeCount}}
+                        </p>
+                        {{/if}}
+                    </div>
+
+                    <div class="col-2 text-center">
+                        {{#if items.favoriteCount}}
+                        <p><strong class="text-danger"><i class="fa-solid fa-star"></i></strong>
+                            <br>{{items.favoriteCount}}
+                        </p>
+                        {{/if}}
+                    </div>
+
+                    <div class="col-2 text-center">
+                        {{#if items.commentCount}}
+                        <p><i class="fa fa-comments text-warning"></i><br>
+                            {{items.commentCount}}</p>
+                        {{/if}}
+                    </div>
+
+                    <div class="col-4" style="text-align: right;justify-content:right">
+                        <i class="fa-solid fa-bell bell-icon"></i>
+                    </div>
+                </div>
+
+                <a href="javascript:sendUrl('{{this.Id}}');" class="btn btn-primary download_btn_icon"
+                    role="button"><i class="fa fa-download mr-1"></i>Download</a>
+
+                <button class="btn btn-primary" onclick="showD()" id="btn-id">Show Description</button>
+
+                <div style="height: 10px;"></div>
+                <hr>
+                <p id="show-desc" style="display:none;">{{snippet.description}}</p>
+
+                <h6>
+                    {{totalComments}} Comments
+                </h6>
+                <hr>
+                <br>
+
+                {{#each comments}}
+                <div class="row">
+                    <div class="col-1">
+                        {{#if this.snippet.topLevelComment.snippet.authorProfileImageUrl}}
+                        <img src="{{this.snippet.topLevelComment.snippet.authorProfileImageUrl}}" alt="Profile Pic"
+                            class="rounded-circle">
+                        {{/if}}
+                    </div>
+
+                    <div class="col-11">
+                        <h6 class="ml-3">{{this.snippet.topLevelComment.snippet.authorDisplayName}}</h6>
+                        <p class="ml-3">{{this.snippet.topLevelComment.snippet.textDisplay}}</p>
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="ml-3 fa fa-thumbs-up"><span
+                                        class="ml-2">{{this.snippet.topLevelComment.snippet.likeCount}}</span></i>
+                            </div>
+                            <div class="col-1">
+                                <i class="fa fa-thumbs-down h6"></i>
+                            </div>
+                            <div class="col-1">
+                                <p>REPLY</p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+            <div class="col-5">
+                <h5 class="mb-2 ml-3">Suggested Videos</h5>
+                <hr class="ml-3"><br>
+                {{#each suggestedVideos}}
+                <div class="row hover-div-2 justify-content-between">
+                    <div class="col-5 mb-3 mt-3" style="position: relative;right: 3px;">
+                        <a href="/ViewVideo/{{this.id.videoId}}">
+                            <img src="{{this.snippet.thumbnails.medium.url}}" style="width:220px; height:140px"
+                                class="ml-3 mb-3">
+                        </a>
+                    </div>
+                    <div class="col-6 mt-3" style="position: relative;left: 3px;">
+                        <h6 class="ml-3" style="font-size: 14px;">
+                            <a href="/ViewVideo/{{this.id.videoId}}" style="color:black">
+                                {{this.snippet.title}}
+                            </a>
+                        </h6>
+
+                        <h5 class="text-secondary ml-3" style="font-size: 13px;">
+                            <a href="/ViewPlayList/{{this.snippet.channelId}}" class="text-secondary channel">
+                                {{this.snippet.channelTitle}}
+                            </a>
+                            <i class="fa fa-check-circle"></i>
+                        </h5>
+                        <a href="javascript:sendUrl('{{this.id.videoId}}');" style="align-items: center !important;
+    justify-content: center !important;"
+                            class="btn btn-outline-primary mb-3 ml-3 border-download" role="button"><i
+                                class="fa fa-download mr-1" style="font-size: 15px;"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+    </div>
+    <br>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-light-grey w3-center w3-opacity w3-xlarge text-center pb-2"
+        style="padding-top: 20px; background-color:rgb(240, 240, 240)">
+        <i class="fa fa-facebook-official w3-hover-opacity" style="font-size: 26px;    margin-top: 15px;"></i>
+        <i class="fa fa-instagram w3-hover-opacity" style="font-size: 26px;"></i>
+        <i class="fa fa-snapchat w3-hover-opacity" style="font-size: 26px;"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity" style="font-size: 26px;"></i>
+        <i class="fa fa-twitter w3-hover-opacity" style="font-size: 26px;"></i>
+        <i class="fa fa-linkedin w3-hover-opacity" style="font-size: 26px;"></i>
+        <p class="w3-medium" style="font-size: 20px;">Powered by <a href="" target="_blank" class="w3-hover-text-green footer_para">Cypexsoft&reg;</a></p>
+    </footer>
+    <!-- End footer -->
+
+    <script>
+        function sendUrl(id) {
+            console.log('downloadBtn clicked')
+            let url = `http://www.youtube.com/watch?v=${id}`
+            window.location.href = `http://localhost:4700/download?URL=${url}&id=${id}`
+        }
+
+        function showD() {
+            var x = document.getElementById("show-desc");
+            var btn = document.getElementById("btn-id");
+
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                btn.textContent = 'Hide Description'
+            } else {
+                x.style.display = "none";
+                btn.textContent = 'Show Description'
+            }
+        }
+    </script>
+</body>
+
+</html>

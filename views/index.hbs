@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/index-style.css">
+	<script src="https://kit.fontawesome.com/b923a3b1ca.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="screen">
+			<div class="screen__content">
+
+				<form class="login">
+					<div class="text-right page-heading">
+						<h2>LOGIN</h2>
+					</div>
+					{{#if logoutMsg}}
+					<p style="color: rgb(140, 104, 240); font-weight:bold">{{logoutMsg}}</p>
+					{{/if}}
+
+					{{#if err_msg}}
+					<p style="color: rgb(140, 104, 240); font-weight:bold">{{err_msg}}</p>
+					{{/if}}
+					<div class="login__field">
+						<i class="login__icon fas fa-user"></i>
+						<input type="text" class="login__input" placeholder="User name">
+					</div>
+					<div class="login__field">
+						<i class="login__icon fas fa-lock"></i>
+						<input type="password" class="login__input" placeholder="Password">
+					</div>
+					<button class="button login__submit">
+						<span class="button__text">Log In Now</span>
+						<i class="button__icon fas fa-chevron-right"></i>
+					</button>
+					<a href="" class="button login__submit">
+						<span class="button__text">Signup</span>
+						<i class="button__icon fas fa-chevron-right"></i>
+					</a>
+				</form>
+				<div class="social-login">
+					<h3 style="font-weight: 600;">login via</h3>
+					<div class="social-icons">
+						<a href="/auth/facebook" class="social-login__icon fab fa-facebook" style="font-size: 30px"></a>
+						<a href="/google" class="social-login__icon fab fa-google" style="font-size: 30px"></a>
+					</div>
+				</div>
+			</div>
+			<div class="screen__background">
+				<span class="screen__background__shape screen__background__shape4"></span>
+				<span class="screen__background__shape screen__background__shape3"></span>
+				<span class="screen__background__shape screen__background__shape2"></span>
+				<span class="screen__background__shape screen__background__shape1"></span>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

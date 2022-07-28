@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HOME</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <!-- Sidebar with image -->
+  <div>
+    <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%;
+    height:80vh; overflow:hidden !important">
+      <div class="bgimg" style="text-align: center; justify-content: center;">
+        {{#if user._json.picture.data.url}}
+        <img src="{{user._json.picture.data.url}}" style="width:100% !important;
+    height: 100% !important;">
+        {{else}}
+        {{#if pic._json.picture.data.url}}
+        <img src="{{pic._json.picture.data.url}}" style="width:100% !important;
+    height: 100% !important;">
+        {{else}}
+        <img src="/images/profilepic.png" style="width:70% !important; height: 50% !important">
+        {{/if}}
+        {{/if}}
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hidden Sidebar (reveals when clicked on menu icon)-->
+  <nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge" id="mySidebar" style=" display:none;
+    padding-top:150px;
+    right:0;
+    z-index:2;">
+    <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright"
+      style="padding:0 12px;">
+      <i class="fa fa-remove"></i>
+    </a>
+    <div class="w3-bar-block w3-center">
+      <a href="/home" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Home</a>
+      <a href="/home" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Profile</a>
+      <a href="/search" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Search</a>
+      <a href="/logout" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="w3-main w3-padding-large" style="margin-left:40%">
+
+    <!-- Menu icon to open sidebar -->
+    <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" onclick="openNav()" style="width:auto;
+    right:0;"><i class="fa fa-bars"></i></span>
+
+    <!-- Header -->
+    <header class="w3-container w3-center" style="padding:105px 16px" id="home">
+      <h1 class="w3-jumbo"><b> {{user.displayName}} </b></h1>
+      <h3><b> Provider : {{user.provider}}</b></h3>
+      {{#if user._json.email}}
+      <h5> Email : {{user._json.email}}</h5>
+      {{/if}}
+      <img src="/w3images/profile_girl.jpg" class="w3-image w3-hide-large w3-hide-small w3-round" style="display:block;
+    width:60%;
+    margin:auto;">
+      <img src="/w3images/profile_girl.jpg" class="w3-image w3-hide-large w3-hide-medium w3-round" width="1000"
+        height="1333">
+
+      <a href="javascript:searchPage();" class="w3-button w3-light-grey w3-padding-large w3-margin-top">
+        <i class="fa fa-search"></i> Search Videos
+      </a>
+    </header>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-light-grey w3-center w3-opacity w3-xlarge" style="padding-top: 20px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium">Powered by <a href="" target="_blank" class="w3-hover-text-green"
+        style="text-decoration: none;">Cypexsoft&reg;</a></p>
+  </footer>
+  <!-- End footer -->
+
+  <script>
+    // Open and close sidebar
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "60%";
+      document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function sendUrl(id) {
+      console.log('downloadBtn clicked')
+      let url = `http://www.youtube.com/watch?v=${id}`
+      window.location.href = `http://localhost:4700/download?URL=${url}&id=${id}`
+    }
+
+    function searchPage() {
+      console.log('searchBtn clicked')
+      window.location.href = `http://localhost:4700/search`
+    }
+  </script>
+
+</body>
+
+</html>
